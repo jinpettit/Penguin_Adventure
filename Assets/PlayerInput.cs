@@ -7,8 +7,8 @@ using UnityEngine.AI;
 public class PlayerInput : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 8f;
-    private float jumpingPower = 16f;
+    private float speed = 4f;
+    private float jumpingPower = 4f;
     private bool isFacingRight = true;
 
     public AudioSource audioPlayer;
@@ -38,6 +38,7 @@ public class PlayerInput : MonoBehaviour
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
+
     private void Flip()
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
