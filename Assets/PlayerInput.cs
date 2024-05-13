@@ -8,7 +8,8 @@ using UnityEngine.AI;
 public class PlayerInput : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 4f;
+    
+    private float speed = 2f;
     private float jumpingPower = 4f;
     private bool isFacingRight = true;
     private Animator anim;
@@ -19,10 +20,17 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    public BoxCollider2D regCol;
+    public BoxCollider2D slideCol;
+    public Vector3 respawnPoint;
+
+
     void Start()
     {
         anim = GetComponent<Animator>();
         rb.freezeRotation = true;
+        respawnPoint = transform.position;
+        
     }
 
     // Update is called once per frame
@@ -44,9 +52,34 @@ public class PlayerInput : MonoBehaviour
         {
             anim.SetBool("IsAttacking", true);
         }
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            anim.SetBool("IsSlide", true);
+            Slide();
+            //anim.SetBool("IsSlide", false);
+        }
+
 
         Flip();
     }
+
+    private void Slide(){
+        //regCol.enabled = false;
+        //slideCol.enabled = true;
+        speed = 5f;
+        StartCoroutine(ResetSlide());
+        //regCol.enabled = true;
+        //slideCol.enabled = false;
+    }
+
+    IEnumerator ResetSlide()
+    {
+        yield return new WaitForSeconds(0.5f);
+        speed = 2f;
+        anim.SetBool("IsSlide", false);
+    }
+
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
@@ -65,5 +98,24 @@ public class PlayerInput : MonoBehaviour
     public void endAttack()
     {
         anim.SetBool("IsAttacking", false);
+    }
+
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.tag == "FallDetector"){
+            //what will happen when player enters fall detector zone
+            transform.position = respawnPoint;
+        }
+        else if(other.tag == "Checkpoint"){
+            //what will happen when player enters checkpoint zone
+            respawnPoint = other.transform.position;
+        }
+        else if(other.tag == "Ice"){
+            //what will happen when player enters ice zone
+            speed = 3f;
+        }
+        else if(other.tag == "Normal"){
+            //what will happen when player enters normal zone
+            speed = 2f;
+        }
     }
 }

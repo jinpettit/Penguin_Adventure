@@ -8,6 +8,9 @@ TagManager:
   - Platform
   - FallDetector
   - Player1
+  - Checkpoint
+  - Ice
+  - Normal
   layers:
   - Default
   - TransparentFX
