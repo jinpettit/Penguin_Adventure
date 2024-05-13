@@ -22,5 +22,9 @@ public class PlayerController : MonoBehaviour
             //what will happen when player enters fall detector zone
             transform.position = respawnPoint;
         }
+        else if(other.tag == "Checkpoint"){
+            //what will happen when player enters checkpoint zone
+            respawnPoint = other.transform.position;
+        }
     }
 }
