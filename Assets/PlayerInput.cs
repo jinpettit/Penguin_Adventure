@@ -4,6 +4,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerInput : MonoBehaviour
 {
@@ -123,6 +125,9 @@ public class PlayerInput : MonoBehaviour
         }
         else if (other.tag == "Seal" && anim.GetBool("IsAttacking") == false){
             transform.position = respawnPoint;
+        }
+        else if(other.tag == "Final"){
+            SceneManager.LoadScene(2);
         }
     }
 }
