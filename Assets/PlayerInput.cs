@@ -121,5 +121,8 @@ public class PlayerInput : MonoBehaviour
             //what will happen when player enters normal zone
             speed = 2f;
         }
+        else if (other.tag == "Seal" && anim.GetBool("IsAttacking") == false){
+            transform.position = respawnPoint;
+        }
     }
 }
