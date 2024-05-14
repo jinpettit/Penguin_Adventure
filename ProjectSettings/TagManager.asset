@@ -12,6 +12,8 @@ TagManager:
   - Ice
   - Normal
   - Fish
+  - Seal
+  - Final
   layers:
   - Default
   - TransparentFX
