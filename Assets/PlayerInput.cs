@@ -27,6 +27,8 @@ public class PlayerInput : MonoBehaviour
 
     void Start()
     {
+        //regCol.enabled = true;
+        //slideCol.enabled = false;
         anim = GetComponent<Animator>();
         rb.freezeRotation = true;
         respawnPoint = transform.position;
@@ -78,6 +80,8 @@ public class PlayerInput : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         speed = 2f;
         anim.SetBool("IsSlide", false);
+        //regCol.enabled = true;
+        //slideCol.enabled = false;
     }
 
     private void FixedUpdate()
