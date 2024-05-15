@@ -38,6 +38,7 @@ public class PlayerInput : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
         respawnPoint = transform.position;
+        isGrounded = true;
 
     }
 
@@ -47,11 +48,14 @@ public class PlayerInput : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         // isGrounded = Physics2D.OverlapCapsule(groundCheck.position, new Vector2(.05f, .02f), CapsuleDirection2D.Horizontal, 0, groundLayer);
 
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+        bool isMoving = !Mathf.Approximately(horizontal, 0f);
+
+        anim.SetBool("isMoving", isMoving);
 
         if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            isGrounded = false;
         }
 
         if (Input.GetButtonUp("Jump"))
@@ -62,7 +66,6 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
-
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -170,7 +173,19 @@ public class PlayerInput : MonoBehaviour
         }
         else if (other.tag == "Final")
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Normal") || other.gameObject.CompareTag("Ice"))
+        {
+            Vector3 normal = other.GetContact(0).normal;
+            if (normal == Vector3.up)
+            {
+                isGrounded = true;
+            }
         }
     }
 
