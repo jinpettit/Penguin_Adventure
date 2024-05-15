@@ -24,7 +24,7 @@ TagManager:
   - UI
   - Ground
   - Enemies
-  - 
+  - Flag
   - 
   - 
   - 
@@ -51,4 +51,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Flag
+    uniqueID: 3049642669
     locked: 0
