@@ -322,12 +322,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb784a59c4e98a243ba4969b232f3ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioPlayer: {fileID: 0}
-  rb: {fileID: 880058747}
   groundCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  regCol: {fileID: 0}
+  slideCol: {fileID: 0}
+  respawnPoint: {x: 0, y: 0, z: 0}
+  isGrounded: 0
+  attackPoint: {fileID: 0}
+  attackRange: 0.5
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  audioSource1: {fileID: 0}
+  audioSource2: {fileID: 0}
+  audioSource3: {fileID: 0}
 --- !u!1 &1067509533
 GameObject:
   m_ObjectHideFlags: 0

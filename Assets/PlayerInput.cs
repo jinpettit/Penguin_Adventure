@@ -16,8 +16,6 @@ public class PlayerInput : MonoBehaviour
     private bool isFacingRight = true;
     private Animator anim;
 
-    public AudioSource audioPlayer;
-
     private Rigidbody2D rb;
     public Transform groundCheck;
     public LayerMask groundLayer;
@@ -29,6 +27,9 @@ public class PlayerInput : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
+    public AudioSource audioSource1;
+    public AudioSource audioSource2;
+    public AudioSource audioSource3;
 
     void Start()
     {
@@ -54,6 +55,7 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
+            audioSource1.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             isGrounded = false;
         }
@@ -65,11 +67,13 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            audioSource2.Play();
             Attack();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            audioSource3.Play();
             anim.SetBool("IsSlide", true);
             Slide();
             //anim.SetBool("IsSlide", false);

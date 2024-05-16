@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 2baecc7576dc89242b2dac3db56114df
   - enabled: 1
-    path: Assets/Scenes/almost Game.unity
+    path: Assets/Scenes/Final Game.unity
     guid: 51caed4923466c94d84e583fbfdcd843
   - enabled: 1
     path: Assets/Scenes/Credits.unity
